@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Sensitive / personal files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+phantom_keypair.json
+*.key
+*.pem
+*.secret
+
+# IDE / editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+
+# Logs & temp
+*.log
+data/
+temp/
+cache/
+
+# macOS / Windows junk
+.DS_Store
+Thumbs.db
+
+# Database dumps (if you ever export)
+*.sql
+*.dump
+
+# Flask / web
+instance/
+.webassets-cache

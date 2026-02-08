@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Solana Swap Logs</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0f0f17;
+            color: #e0e0ff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 { color: #7b5eff; text-align: center; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #1a1a2e;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        th {
+            background: #2a2a4a;
+            color: #bb86fc;
+        }
+        tr:hover { background: #252545; }
+        .success { color: #00e676; }
+        .failed  { color: #ff5252; }
+        .tx-link {
+            color: #64b5f6;
+            text-decoration: none;
+        }
+        .tx-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>My Solana Swap / Trade Logs</h1>
+    <p style="text-align:center; color:#aaa;">
+        Last updated: {{ now.strftime('%Y-%m-%d %H:%M UTC') }}
+    </p>
+
+    {% if trades %}
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Action</th>
+                <th>Input</th>
+                <th>Output</th>
+                <th>Price Impact</th>
+
+                <th>Tx Signature</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trade in trades %}
+            <tr>
+                <td>{{ trade.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ trade.action|upper }}</td>
+                <td>{{ trade.input_amount_ui }} {{ trade.input_mint }}</td>
+                <td>{{ trade.output_amount_ui }} {{ trade.output_mint }}</td>
+                <td>{{ "%.4f"|format(trade.price_impact_pct|default(0)) }}%</td>
+
+                <td>
+                    <a href="https://solscan.io/tx/{{ trade.tx_signature }}"
+                       target="_blank" class="tx-link">
+                        {{ trade.tx_signature[:12] }}...
+                    </a>
+                </td>
+                <td class="{{ trade.status }}">
+                    {{ trade.status|upper }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p style="text-align:center; color:#888;">No trades recorded yet.</p>
+    {% endif %}
+</body>
+</html>

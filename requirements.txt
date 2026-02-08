@@ -1,0 +1,11 @@
+winloop
+spl
+base58
+solana==0.34.3
+solders==0.21.0
+requests==2.32.3
+aiohttp==3.10.5
+python-telegram-bot==21.5        # async telegram client
+mysql-connector-python==9.1.0
+python-dotenv==1.0.1             # .env support
+flask==3.0.3                     # if keeping dashboard
