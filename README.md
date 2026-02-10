@@ -13,7 +13,7 @@ Automated bot that:
 
 ## ⚠️ WARNINGS
 
-- **This can lose ALL your money very quickly**
+- **This can lose ALL your money quickly**
 - Many tokens are rugs / honeypots / pump & dumps
 - Never use real significant funds
 - Jupiter v1 API is **deprecated** → consider upgrading
